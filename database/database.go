@@ -47,8 +47,8 @@ import (
 
 	"code.google.com/p/snappy-go/snappy"
 	"github.com/garyburd/redigo/redis"
-	"github.com/golang/gddo/doc"
-	"github.com/golang/gddo/gosrc"
+	"github.com/c1pherx/gddo/doc"
+	"github.com/c1pherx/gddo/gosrc"
 )
 
 type Database struct {

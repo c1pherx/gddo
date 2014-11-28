@@ -7,7 +7,7 @@
 package httputil
 
 import (
-	"github.com/golang/gddo/httputil/header"
+	"github.com/c1pherx/gddo/httputil/header"
 	"net/http"
 	"strings"
 )

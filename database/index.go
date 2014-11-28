@@ -12,8 +12,8 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/golang/gddo/doc"
-	"github.com/golang/gddo/gosrc"
+	"github.com/c1pherx/gddo/doc"
+	"github.com/c1pherx/gddo/gosrc"
 )
 
 func isStandardPackage(path string) bool {

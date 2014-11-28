@@ -14,7 +14,7 @@ import (
 	"time"
 
 	"github.com/garyburd/redigo/redis"
-	"github.com/golang/gddo/doc"
+	"github.com/c1pherx/gddo/doc"
 )
 
 func newDB(t *testing.T) *Database {

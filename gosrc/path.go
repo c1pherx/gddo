@@ -474,6 +474,11 @@ var validTLD = map[string]bool{
 var validHost = regexp.MustCompile(`^[-a-z0-9]+(?:\.[-a-z0-9]+)+$`)
 var validPathElement = regexp.MustCompile(`^[-A-Za-z0-9~+][-A-Za-z0-9_.]*$`)
 
+func AddTLD(tld string) {
+	validTLD[tld] = true
+	return
+}
+
 func isValidPathElement(s string) bool {
 	return validPathElement.MatchString(s) && s != "testdata"
 }

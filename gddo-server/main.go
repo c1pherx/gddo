@@ -31,10 +31,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/golang/gddo/database"
-	"github.com/golang/gddo/doc"
-	"github.com/golang/gddo/gosrc"
-	"github.com/golang/gddo/httputil"
+	"github.com/c1pherx/gddo/gosrc"
+	"github.com/c1pherx/gddo/database"
+	"github.com/c1pherx/gddo/doc"
+	"github.com/c1pherx/gddo/httputil"
 )
 
 const (
@@ -611,6 +611,8 @@ func serveHome(resp http.ResponseWriter, req *http.Request) error {
 			http.Redirect(resp, req, "/"+q, http.StatusFound)
 			return nil
 		}
+	} else {
+		log.Println(q + " is not valid?")
 	}
 
 	pkgs, err := db.Query(q)
@@ -840,12 +842,13 @@ var (
 
 var (
 	robot             = flag.Float64("robot", 100, "Request counter threshold for robots")
-	assetsDir         = flag.String("assets", filepath.Join(defaultBase("github.com/golang/gddo/gddo-server"), "assets"), "Base directory for templates and static files.")
+	assetsDir         = flag.String("assets", filepath.Join(defaultBase("github.com/c1pherx/gddo/gddo-server"), "assets"), "Base directory for templates and static files.")
 	getTimeout        = flag.Duration("get_timeout", 8*time.Second, "Time to wait for package update from the VCS.")
 	firstGetTimeout   = flag.Duration("first_get_timeout", 5*time.Second, "Time to wait for first fetch of package from the VCS.")
 	maxAge            = flag.Duration("max_age", 24*time.Hour, "Update package documents older than this age.")
 	httpAddr          = flag.String("http", ":8080", "Listen for HTTP connections on this address")
 	srcZip            = flag.String("srcZip", "", "")
+	tlds              = flag.String("tlds", "", "Additional TLDS to add to the valid list. Comma seperated.")
 	sidebarEnabled    = flag.Bool("sidebar", false, "Enable package page sidebar.")
 	gitHubCredentials = ""
 	userAgent         = ""
@@ -854,6 +857,13 @@ var (
 func main() {
 	flag.Parse()
 	log.Printf("Starting server, os.Args=%s", strings.Join(os.Args, " "))
+
+	if *tlds != "" {
+		for _, tld := range strings.Split(*tlds, ",") {
+			log.Println("Adding " + tld)
+			gosrc.AddTLD(tld)
+		}
+	}
 
 	if *srcZip != "" {
 		r, err := zip.OpenReader(*srcZip)

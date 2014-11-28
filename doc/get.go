@@ -8,10 +8,12 @@
 package doc
 
 import (
-	"github.com/golang/gddo/gosrc"
+	"fmt"
 	"go/doc"
 	"net/http"
 	"strings"
+
+	"github.com/c1pherx/gddo/gosrc"
 )
 
 func Get(client *http.Client, importPath string, etag string) (*Package, error) {
@@ -26,6 +28,7 @@ func Get(client *http.Client, importPath string, etag string) (*Package, error) 
 
 	dir, err := gosrc.Get(client, importPath, etag)
 	if err != nil {
+		fmt.Println("HERE")
 		return nil, err
 	}
 
