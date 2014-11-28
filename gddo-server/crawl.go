@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/c1pherx/gddo/gosrc"
 	"github.com/c1pherx/gddo/doc"
+	"github.com/c1pherx/gddo/gosrc"
 )
 
 var nestedProjectPat = regexp.MustCompile(`/(?:github\.com|launchpad\.net|code\.google\.com/p|bitbucket\.org|labix\.org)/`)
@@ -28,7 +28,6 @@ func exists(path string) bool {
 
 // crawlDoc fetches the package documentation from the VCS and updates the database.
 func crawlDoc(source string, importPath string, pdoc *doc.Package, hasSubdirs bool, nextCrawl time.Time) (*doc.Package, error) {
-	log.Println("HERE")
 	message := []interface{}{source}
 	defer func() {
 		message = append(message, importPath)
@@ -109,7 +108,6 @@ func crawlDoc(source string, importPath string, pdoc *doc.Package, hasSubdirs bo
 		}
 		return nil, err
 	default:
-		log.Println("HERE2")
 		message = append(message, "ERROR:", err)
 		return nil, err
 	}
