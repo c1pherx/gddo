@@ -11,7 +11,6 @@ import (
 	"encoding/xml"
 	"errors"
 	"io"
-	"log"
 	"net/http"
 	"path"
 	"regexp"
@@ -314,27 +313,21 @@ func getStatic(client *http.Client, importPath, etag string) (*Directory, error)
 }
 
 func Get(client *http.Client, importPath string, etag string) (dir *Directory, err error) {
-	log.Println("WTF")
 	switch {
 	case localPath != "":
-		log.Println("Local")
 		dir, err = getLocal(importPath)
 	case IsGoRepoPath(importPath):
-		log.Println("IsGoRepoPath")
 		dir, err = getStandardDir(client, importPath, etag)
 	case IsValidRemotePath(importPath):
-		log.Println("IsValidRemotePath")
 		dir, err = getStatic(client, importPath, etag)
 		if err == errNoMatch {
 			dir, err = getDynamic(client, importPath, etag)
 		}
 	default:
-		log.Println("Default")
 		err = errNoMatch
 	}
 
 	if err == errNoMatch {
-		log.Println("ERROR")
 		err = NotFoundError{Message: "Import path not valid:"}
 	}
 

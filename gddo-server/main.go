@@ -31,9 +31,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/c1pherx/gddo/gosrc"
 	"github.com/c1pherx/gddo/database"
 	"github.com/c1pherx/gddo/doc"
+	"github.com/c1pherx/gddo/gosrc"
 	"github.com/c1pherx/gddo/httputil"
 )
 
@@ -860,7 +860,6 @@ func main() {
 
 	if *tlds != "" {
 		for _, tld := range strings.Split(*tlds, ",") {
-			log.Println("Adding " + tld)
 			gosrc.AddTLD(tld)
 		}
 	}

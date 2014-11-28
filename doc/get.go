@@ -8,7 +8,6 @@
 package doc
 
 import (
-	"fmt"
 	"go/doc"
 	"net/http"
 	"strings"
@@ -28,7 +27,6 @@ func Get(client *http.Client, importPath string, etag string) (*Package, error) 
 
 	dir, err := gosrc.Get(client, importPath, etag)
 	if err != nil {
-		fmt.Println("HERE")
 		return nil, err
 	}
 
