@@ -601,7 +601,7 @@ func serveHome(resp http.ResponseWriter, req *http.Request) error {
 		q = path
 	}
 
-	if gosrc.IsValidRemotePath(q) || (strings.Contains(q, "/") && gosrc.IsGoRepoPath(q)) {
+	if gosrc.IsValidRemotePath(q) || gosrc.IsGoRepoPath(q) {
 		pdoc, pkgs, err := getDoc(q, queryRequest)
 		if e, ok := err.(gosrc.NotFoundError); ok && e.Redirect != "" {
 			http.Redirect(resp, req, "/"+e.Redirect, http.StatusFound)
@@ -650,7 +650,7 @@ func serveAPISearch(resp http.ResponseWriter, req *http.Request) error {
 
 	var pkgs []database.Package
 
-	if gosrc.IsValidRemotePath(q) || (strings.Contains(q, "/") && gosrc.IsGoRepoPath(q)) {
+	if gosrc.IsValidRemotePath(q) || gosrc.IsGoRepoPath(q) {
 		pdoc, _, err := getDoc(q, robotRequest)
 		if err == nil && pdoc != nil {
 			pkgs = []database.Package{{Path: pdoc.ImportPath, Synopsis: pdoc.Synopsis}}
