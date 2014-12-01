@@ -81,6 +81,6 @@
 </div>
 {{end}}
 
-{{define "Bootstrap.css"}}<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">{{end}}
-{{define "Bootstrap.js"}}<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>{{end}}
-{{define "jQuery"}}<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>{{end}}
+{{define "Bootstrap.css"}}<link href="{{staticPath "/-/bootstrap.min.css"}}" rel="stylesheet">{{end}}
+{{define "Bootstrap.js"}}<script src="{{staticPath "/-/bootstrap.min.js"}}"></script>{{end}}
+{{define "jQuery"}}<script src="{{staticPath "/-/jquery.min.js"}}"></script>{{end}}
