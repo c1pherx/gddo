@@ -945,6 +945,9 @@ func main() {
 		"third_party/typeahead.min.js",
 		"site.js"))
 	mux.Handle("/-/site.css", staticServer.FilesHandler("site.css"))
+	mux.Handle("/-/bootstrap.min.css", staticServer.FilesHandler("bootstrap.min.css"))
+	mux.Handle("/-/bootstrap.min.js", staticServer.FilesHandler("bootstrap.min.js"))
+	mux.Handle("/-/jquery.min.js", staticServer.FilesHandler("jquery.min.js"))
 	if *sidebarEnabled {
 		mux.Handle("/-/sidebar.css", staticServer.FilesHandler("sidebar.css"))
 	}
